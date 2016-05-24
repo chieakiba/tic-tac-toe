@@ -22,14 +22,13 @@ function playerAI() {
 
 
 $(document).ready(function() {
+	//make a function that randomly puts "O" in one of the nine squares (but not the one taken)
+	playerAI();
 	//if player clicks the squares in the table, put a cross or circle
 	$('.square').one("click", function() {
 		console.log(cross);
 		$(this).children().append(cross);
 	})
-	//make a function that randomly puts "O" in one of the nine squares (but not the one taken)
-	playerAI();
-	$('.square.tb.sides span').append(circle).hide();
 	//function to determine winner
 		//
 });
