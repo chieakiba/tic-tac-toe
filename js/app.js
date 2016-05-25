@@ -1,35 +1,39 @@
 //global variables
 var cross = "X";
 var circle = "O";
-var td = $('td');
-var turn = 0;
-var won;
-var player = 1;
+var counter = 0;
+var clickedCell = $('.square');
+var randomNumberArray = new Array();
+var randomNumber;
+var randomSquare;
+var crossLocation;
+var checkRepeatNumber;
 
-//function that randomly puts circles in the remaining squares where "X" doesn't exist
-function playerAI() {
-	//determine location of the "X"
-	var crossLocation = $('.square:contains(X)').text();
-	var location = $('.square');
-	if (location != crossLocation) {
-		var randomNumber = Math.floor(Math.random() * 9);
-		var randomSquare = $('td').eq(randomNumber - 1);
-		randomSquare.append(circle);
-	}
+
+//function that randomly puts circles in the cell
+function playerAI() { 
+    do {
+        randomNumber = Math.floor((Math.random() * 9) - 1);
+        randomSquare = $('.square').eq(randomNumber);
+    } while (randomSquare.children().text() != '' && counter < 9)
+    randomSquare.children().append(circle);
+    counter++;
 }
-	
-
 
 
 $(document).ready(function() {
-	//make a function that randomly puts "O" in one of the nine squares (but not the one taken)
-	playerAI();
-	//if player clicks the squares in the table, put a cross or circle
-	$('.square').one("click", function() {
-		console.log(cross);
-		$(this).children().append(cross);
-	})
-	//function to determine winner
-		//
+    //function that allows player to put the cross on the cell they click
+    $('.square').one("click", function() {
+        $(this).children().append(cross);
+        counter++;
+        if (counter == 9) {
+            return;
+        }
+        playerAI();
+    })
+    //function to determine winner
+    if ($('#third-row .square').children().html() == cross && $('#third-row .square.sides').children().html() == cross && $('#third-row .square').children().html() == cross) {
+        console.log('this works');
+        $('.feedback').append('Congratulations! You won!');
+    }
 });
-//for looping and recursive function like factorial functions n!
