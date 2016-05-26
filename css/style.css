@@ -31,4 +31,33 @@
 	border-bottom: 10px solid black;
 }
 
+.feedback {
+	text-align: center;
+	font-family: 'Roboto', helvetica;
+	font-weight: 500;
+}
 
+.game {
+	text-align: center;
+}
+
+button {
+	padding: 1em;
+	width: 10%;
+	border-style: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button > .play-again {
+	text-align: center;
+}
+
+.play-again {
+	background-color: orangered;
+	font-family: 'Roboto', helvetica;
+	font-weight: 400;
+	font-size: 1em;
+	padding: 1em;
+	color: white;
+}
