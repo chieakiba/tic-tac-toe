@@ -57,20 +57,25 @@ var playAgain = function() {
         $('.feedback').empty();
         button.hide();
         counter = 0;
-        game();
+        // game();
     })
 }
 
 //function that allows player to start game
 var game = function() {
-    $('.square').one("click", function() {
-        $(this).children().append(cross);
-        counter++;
-        playerAI();
-        winner();
-        if (counter == 9 && !winner()) {
-            $('.feedback').append('Cat\'s Game!');
-            button.show();
+    $('.square').on("click", function(event) {
+        if ($(this).children().text() == '') {
+            $(this).children().append(cross);
+            counter++;
+            playerAI();
+            winner();
+            if (counter == 9 && !winner()) {
+                $('.feedback').append('Cat\'s Game!');
+                button.show();
+            }
+        }
+        else {
+            alert('A move has been already made on this cell!');
         }
         return;
     })
