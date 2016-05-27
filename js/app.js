@@ -33,7 +33,36 @@ function winner() {
         $('.feedback').append('Congratulations! You won!');
         button.show();
     } else {
-        return false;
+        lose();
+    }
+}
+
+//function to determine if the player lost
+var lose = function() {
+    if ($('.first').text() == circle && $('.second').text() == circle && $('.third').text() == circle) {
+        $('.feedback').append('Darn! You lost!');
+        button.show();
+    } else if ($('.fourth').text() == circle && $('.fifth').text() == circle && $('.sixth').text() == circle) {
+        $('.feedback').append('Darn! You lost!');
+        button.show();
+    } else if ($('.seventh').text() == circle && $('.eighth').text() == circle && $('.ninth').text() == circle) {
+        $('.feedback').append('Darn! You lost!');
+        button.show();
+    } else if ($('.first').text() == circle && $('.fifth').text() == circle && $('.ninth').text() == circle) {
+        $('.feedback').append('Darn! You lost!');
+        button.show();
+    } else if ($('.third').text() == circle && $('.fifth').text() == circle && $('.seventh').text() == circle) {
+        $('.feedback').append('Darn! You lost!');
+        button.show();
+    } else if ($('.first').text() == circle && $('.fourth').text() == circle && $('.seventh').text() == circle) {
+        $('.feedback').append('Darn! You lost!');
+        button.show();
+    } else if ($('.third').text() == circle && $('.sixth').text() == circle && $('.ninth').text() == circle) {
+        $('.feedback').append('Darn! You lost!');
+        button.show();
+    } else if ($('.second').text() == circle && $('.fifth').text() == circle && $('.eighth').text() == circle) {
+        $('.feedback').append('Darn! You lost!');
+        button.show();
     }
 }
 
@@ -57,7 +86,6 @@ var playAgain = function() {
         $('.feedback').empty();
         button.hide();
         counter = 0;
-        // game();
     })
 }
 
