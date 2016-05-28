@@ -9,60 +9,46 @@ var button = $('.play-again');
 //function to determine winner
 function winner() {
     if ($('.first').text() == cross && $('.second').text() == cross && $('.third').text() == cross) {
-        $('.feedback').append('Congratulations! You won!');
-        button.show();
+        return true;
     } else if ($('.fourth').text() == cross && $('.fifth').text() == cross && $('.sixth').text() == cross) {
-        $('.feedback').append('Congratulations! You won!');
-        button.show();
+        return true;
     } else if ($('.seventh').text() == cross && $('.eighth').text() == cross && $('.ninth').text() == cross) {
-        $('.feedback').append('Congratulations! You won!');
-        button.show();
+        return true;
     } else if ($('.first').text() == cross && $('.fifth').text() == cross && $('.ninth').text() == cross) {
-        $('.feedback').append('Congratulations! You won!');
-        button.show();
+        return true;
     } else if ($('.third').text() == cross && $('.fifth').text() == cross && $('.seventh').text() == cross) {
-        $('.feedback').append('Congratulations! You won!');
-        button.show();
+        return true;
     } else if ($('.first').text() == cross && $('.fourth').text() == cross && $('.seventh').text() == cross) {
-        $('.feedback').append('Congratulations! You won!');
-        button.show();
-    } else if ($('.third').text() == cross && $('.sixth').text() == cross && $('.ninth').text() == cross) {
-        $('.feedback').append('Congratulations! You won!');
-        button.show();
+        return true;
     } else if ($('.second').text() == cross && $('.fifth').text() == cross && $('.eighth').text() == cross) {
-        $('.feedback').append('Congratulations! You won!');
-        button.show();
+        return true;
+    } else if ($('.third').text() == cross && $('.sixth').text() == cross && $('.ninth').text() == cross) {
+        return true;
     } else {
-        lose();
+        return false;
     }
 }
 
 //function to determine if the player lost
 var lose = function() {
     if ($('.first').text() == circle && $('.second').text() == circle && $('.third').text() == circle) {
-        $('.feedback').append('Darn! You lost!');
-        button.show();
+        return true;
     } else if ($('.fourth').text() == circle && $('.fifth').text() == circle && $('.sixth').text() == circle) {
-        $('.feedback').append('Darn! You lost!');
-        button.show();
+        return true;
     } else if ($('.seventh').text() == circle && $('.eighth').text() == circle && $('.ninth').text() == circle) {
-        $('.feedback').append('Darn! You lost!');
-        button.show();
+        return true;
     } else if ($('.first').text() == circle && $('.fifth').text() == circle && $('.ninth').text() == circle) {
-        $('.feedback').append('Darn! You lost!');
-        button.show();
+        return true;
     } else if ($('.third').text() == circle && $('.fifth').text() == circle && $('.seventh').text() == circle) {
-        $('.feedback').append('Darn! You lost!');
-        button.show();
+        return true;
     } else if ($('.first').text() == circle && $('.fourth').text() == circle && $('.seventh').text() == circle) {
-        $('.feedback').append('Darn! You lost!');
-        button.show();
+        return true;
     } else if ($('.third').text() == circle && $('.sixth').text() == circle && $('.ninth').text() == circle) {
-        $('.feedback').append('Darn! You lost!');
-        button.show();
+        return true;
     } else if ($('.second').text() == circle && $('.fifth').text() == circle && $('.eighth').text() == circle) {
-        $('.feedback').append('Darn! You lost!');
-        button.show();
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -74,7 +60,7 @@ function playerAI() {
         if (counter == 9) {
             return;
         }
-    } while (randomSquare.children().text() != '' && counter < 9)
+    } while (randomSquare.children().text() != '' && counter <= 9)
     randomSquare.children().append(circle);
     counter++;
 }
@@ -96,13 +82,29 @@ var game = function() {
             $(this).children().append(cross);
             counter++;
             playerAI();
-            winner();
-            if (counter == 9 && !winner()) {
-                $('.feedback').append('Cat\'s Game!');
+            var win = winner();
+            var loser = lose();
+            if (win) {
+                $('.feedback').html('Congratulations! You won!');
+                button.show();
+            } else if (loser) {
+                $('.feedback').html('Darn! You lost!');
                 button.show();
             }
-        }
-        else {
+            if (counter == 9) {
+                if (winner()) {
+
+                } else if (lose()) {
+                    $('.feedback').html('Darn! You lost!');
+                    button.show();
+                } else {
+                    $('.feedback').html('Cat\'s Game!');
+                    button.show();
+                }
+            } else {
+                lose();
+            }
+        } else {
             alert('A move has been already made on this cell!');
         }
         return;
